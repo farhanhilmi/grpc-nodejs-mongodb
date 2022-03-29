@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+service UserService {
+  rpc getUser (userId) returns (User) {}
+  rpc getAllUser (Empty) returns (UserList) {}
+  rpc addUser (addUserData) returns (User) {}
+  rpc updateUser (User) returns (result) {}
+  rpc deleteUser (userId) returns (result) {}
+}
+
+message Empty {}
+
+enum Status {
+  active = 1;
+  disabled = 2;
+}
+
+enum Gender {
+  male = 1;
+  female = 2;
+};
+
+message User {
+  string _id = 1;
+  string name = 2;
+  Gender gender = 3;
+  string address = 5;
+  string username = 6;
+  string password = 7;
+  Status status = 8;
+}
+
+message addUserData {
+  string name = 1;
+  Gender gender = 2;
+  string address = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message userId {
+  string _id = 1;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+
+message result {
+  string status = 1;  
+}
